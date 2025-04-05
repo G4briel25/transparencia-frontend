@@ -1,0 +1,105 @@
+<script setup>
+import { Icon } from "@iconify/vue";
+import { Breadcrumb, Button, Menu } from "primevue";
+import { ref, computed } from "vue";
+import { useRoute } from "vue-router";
+import ToggleDark from "@/components/ToggleDark.vue";
+
+const route = useRoute();
+
+// Mobile
+const homeMenu = ref({
+    label: "Convênios",
+    to: "/convenios",
+});
+
+
+const homeBreadcrumb = ref({
+    label: "Convênios",
+    to: "/convenios",
+});
+
+const items = computed(() => {
+    const matched = route.matched;
+    if (!matched || matched.length === 0) {
+        return [];
+    }
+
+    return matched.reduce((acc, item) => {
+        if (item.meta.breadcrumb) {
+            return acc.concat(
+                item.meta.breadcrumb.map((breadcrumbItem) => {
+                    let url = breadcrumbItem.url;
+
+                    if (url) {
+                        // Substitui os parâmetros dinâmicos na URL
+                        Object.keys(route.params).forEach(param => {
+                            url = url.replace(`:${param}`, route.params[param]);
+                        });
+                    }
+
+                    return {
+                        label: breadcrumbItem.nome,
+                        to: url ? { path: url } : undefined,
+                    };
+                })
+            );
+        }
+        return acc;
+    }, []);
+});
+
+const menu = ref(null);
+
+const toggle = (event) => {
+    if (menu.value) {
+        menu.value.toggle(event);
+    }
+};
+</script>
+
+<template>
+    <div class="hidden md:flex pr-2 justify-between items-center">
+        <Breadcrumb :home="homeBreadcrumb" :model="items">
+            <template #item="{ item, props }">
+                <router-link v-if="item.to" v-slot="{ href, navigate }" :to="item.to" custom>
+                    <a :href="href" v-bind="props.action" @click="navigate">
+                        <span v-if="item.icon" :class="item.icon" class="text-primary mr-1" />
+                        <span class="text-primary font-semibold">{{ item.label }}</span>
+                    </a>
+                </router-link>
+                <a v-else :href="item.url" :target="item.target" v-bind="props.action">
+                    <span class="text-surface-700 dark:text-surface-0">{{ item.label }}</span>
+                </a>
+            </template>
+        </Breadcrumb>
+        <ToggleDark />
+    </div>
+
+
+    <!--    Mobile   -->
+    <div class="flex justify-between pl-1 pt-6 md:hidden">
+        <Button severity="info" type="button" @click="toggle" aria-haspopup="true" aria-controls="overlay_menu">
+            <Icon icon="material-symbols:menu" width="24" height="24" />
+        </Button>
+        <Menu ref="menu" id="overlay_menu" :model="[homeMenu, ...items]" :popup="true">
+            <template #item="{ item, props }">
+                <router-link v-if="item.to" v-slot="{ href, navigate }" :to="item.to" custom>
+                    <a :href="href" v-bind="props.action" @click="navigate">
+                        <span class="text-primary font-semibold">{{ item.label }}</span>
+                    </a>
+                </router-link>
+                <a v-else :href="item.url" :target="item.target" v-bind="props.action">
+                    <span class="text-surface-700 dark:text-surface-0">{{ item.label }}</span>
+                </a>
+            </template>
+        </Menu>
+        <ToggleDark />
+    </div>
+</template>
+
+<style scoped>
+.p-breadcrumb {
+    background-color: transparent;
+}
+</style>

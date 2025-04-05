@@ -1,0 +1,65 @@
+<script setup>
+import {Icon} from "@iconify/vue";
+import {Column, DataTable, Message} from "primevue";
+import { defineProps } from 'vue';
+import funcoes from "@/utils/funcoes.js";
+import {useRouter} from "vue-router";
+
+const { formatarDataBr, formatarMoedaBr } = funcoes();
+
+const router = useRouter();
+const props = defineProps(['convenios']);
+
+const detalhar = (_convenioId) => {
+    router.push({ name: 'convenio-detalhe', params: {convenioId: _convenioId} });
+};
+</script>
+
+<template>
+    <DataTable
+        v-if="props.convenios.length"
+        :value="props.convenios"
+        showGridlines
+        paginator :rows="5"
+        :rowsPerPageOptions="[5, 10, 20, 50]"
+        tableStyle="min-width: 50">
+        <template #header>
+            <div class="flex flex-wrap items-center justify-between gap-2 py-2">
+                <span class="text-xl font-bold">Resultado</span>
+            </div>
+        </template>
+
+        <Column field="id" header="ID"></Column>
+        <Column field="numeroConvenio" header="Convênio"></Column>
+        <Column field="proponente" header="Proponente"></Column>
+        <Column field="convenente" header="Convenente"></Column>
+        <Column field="responsaveis" header="Responsáveis"></Column>
+        <Column field="objeto" header="Objeto"></Column>
+        <Column field="dataInicio" header="Data Início">
+            <template #body="slotProps">
+                {{ formatarDataBr(slotProps.data.dataInicio) }}
+            </template>
+        </Column>
+        <Column field="dataFim" header="Data Fim">
+            <template #body="slotProps">
+                {{ formatarDataBr(slotProps.data.dataFim) }}
+            </template>
+        </Column>
+        <Column field="valorTotal" header="Valor Total Original">
+            <template #body="slotProps">
+                {{ formatarMoedaBr(slotProps.data.valorTotal) }}
+            </template>
+        </Column>
+        <Column header="Ações" style="width: 4rem">
+            <template #body="slotProps">
+                <div class="flex gap-2">
+                    <button title="Detalhar" @click="detalhar(slotProps.data.id)"
+                            class="cursor-pointer bg-gray-100 rounded-full p-2 text-blue-600 hover:text-blue-800 hover:bg-slate-200 transition duration-200 ease-in-out dark:bg-gray-800 dark:text-blue-400 dark:hover:text-blue-300 dark:hover:bg-gray-700">
+                        <Icon icon="fluent:eye-12-regular" width="24" height="24"/>
+                    </button>
+                </div>
+            </template>
+        </Column>
+        <template #footer> Um total de {{ props.convenios ? props.convenios.length : 0 }} convênios. </template>
+    </DataTable>
+</template>
