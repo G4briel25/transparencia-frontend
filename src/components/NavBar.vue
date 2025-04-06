@@ -7,18 +7,6 @@ import ToggleDark from "@/components/ToggleDark.vue";
 
 const route = useRoute();
 
-// Mobile
-const homeMenu = ref({
-    label: "Convênios",
-    to: "/convenios",
-});
-
-
-const homeBreadcrumb = ref({
-    label: "Convênios",
-    to: "/convenios",
-});
-
 const items = computed(() => {
     const matched = route.matched;
     if (!matched || matched.length === 0) {
@@ -60,7 +48,7 @@ const toggle = (event) => {
 
 <template>
     <div class="hidden md:flex pr-2 justify-between items-center">
-        <Breadcrumb :home="homeBreadcrumb" :model="items">
+        <Breadcrumb :model="items">
             <template #item="{ item, props }">
                 <router-link v-if="item.to" v-slot="{ href, navigate }" :to="item.to" custom>
                     <a :href="href" v-bind="props.action" @click="navigate">
@@ -82,7 +70,7 @@ const toggle = (event) => {
         <Button severity="info" type="button" @click="toggle" aria-haspopup="true" aria-controls="overlay_menu">
             <Icon icon="material-symbols:menu" width="24" height="24" />
         </Button>
-        <Menu ref="menu" id="overlay_menu" :model="[homeMenu, ...items]" :popup="true">
+        <Menu ref="menu" id="overlay_menu" :model="[...items]" :popup="true">
             <template #item="{ item, props }">
                 <router-link v-if="item.to" v-slot="{ href, navigate }" :to="item.to" custom>
                     <a :href="href" v-bind="props.action" @click="navigate">

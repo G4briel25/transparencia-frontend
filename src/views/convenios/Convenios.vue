@@ -1,5 +1,5 @@
 <script setup>
-import convenioServiceImpl from "@/services/convenioService";
+import convenioServiceImpl from "@/services/convenioService.js";
 import {onMounted, ref} from "vue";
 import {Message} from "primevue";
 import ConveniosFiltros from "@/views/convenios/ConveniosFiltros.vue";
