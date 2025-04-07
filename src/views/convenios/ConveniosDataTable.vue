@@ -1,6 +1,6 @@
 <script setup>
 import {Icon} from "@iconify/vue";
-import {Column, DataTable, Message} from "primevue";
+import {Column, DataTable} from "primevue";
 import { defineProps } from 'vue';
 import funcoes from "@/utils/funcoes.js";
 import {useRouter} from "vue-router";

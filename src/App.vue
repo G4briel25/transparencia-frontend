@@ -6,17 +6,24 @@ import NavBar from "@/components/NavBar.vue";
 </script>
 
 <template>
-    <header>
-        <HeaderTopo></HeaderTopo>
-        <div class="container mx-auto px-4">
-            <NavBar></NavBar>
-        </div>
-    </header>
-    <main class="container mx-auto px-4">
-        <Home></Home>
-    </main>
+    <div class="flex flex-col justify-between h-screen">
+        <div class="flex-grow">
+            <header>
+                <HeaderTopo></HeaderTopo>
+                <div class="container mx-auto px-4">
+                    <nav>
+                        <NavBar></NavBar>
+                    </nav>
+                </div>
+            </header>
 
-    <footer>
-        <FooterRodape></FooterRodape>
-    </footer>
+            <main class="container mx-auto px-4">
+                <Home></Home>
+            </main>
+        </div>
+
+        <footer class="mt-5">
+            <FooterRodape></FooterRodape>
+        </footer>
+    </div>
 </template>

@@ -1,9 +1,15 @@
 <script setup>
 import {Icon} from "@iconify/vue";
 import {InputText, Panel} from "primevue";
-import {computed, ref} from "vue";
+import {computed, ref, defineProps} from "vue";
 
 const emit = defineEmits(['buscarConvenios', 'limparFiltros']);
+const props = defineProps({
+    buscaRealizada: {
+        type: Boolean,
+        default: false,
+    }
+});
 
 const filtro = ref({
     proponente: null,
@@ -31,6 +37,10 @@ const onEnter = (event) => {
 const algumFiltroPreenchido = computed(() => {
     return Object.values(filtro.value).some(value => value !== null && value !== '');
 });
+
+const exibirBotaoLimpar = computed(() => {
+    return props.buscaRealizada || algumFiltroPreenchido.value;
+});
 </script>
 
 <template>
@@ -55,8 +65,7 @@ const algumFiltroPreenchido = computed(() => {
             <div class="flex justify-end col-span-1 md:col-span-2 lg:col-span-3">
                 <div class="flex justify-end">
                     <button
-                        v-if="algumFiltroPreenchido"
-                        @click="limpar"
+                        v-if="exibirBotaoLimpar" @click="limpar"
                         class="cursor-pointer h-10 mr-5 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-gray-700 hover:bg-gray-800 focus:outline-none">
                         <Icon icon="jam:rubber" width="24" height="24" class="mr-2"/>
                         Limpar

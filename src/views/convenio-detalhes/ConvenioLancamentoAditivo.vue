@@ -83,7 +83,7 @@ const visualizarLancamento = (aditivo) => {
         </TabPanels>
     </Tabs>
 
-    <Dialog v-model:visible="modalLancamento" header="Lançamentos do Aditivo" :style="{ width: '75vw' }" maximizable modal>
+    <Dialog v-model:visible="modalLancamento" header="Lançamentos do Aditivo" class="w-sm md:w-md lg:w-5/12" maximizable modal>
         <DataTable v-if="lancamentosDoAditivo.length" :value="lancamentosDoAditivo">
             <Column field="id" header="ID"></Column>
             <Column field="exercicio" header="Exercício"></Column>

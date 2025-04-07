@@ -7,6 +7,7 @@ import ConveniosDataTable from "@/views/convenios/ConveniosDataTable.vue";
 
 const convenioService = convenioServiceImpl();
 const buscaRealizada = ref(false);
+const dadosEncontrados = ref(false);
 
 const buscar = async (filtro) => {
     const isFiltroVazio = Object.values(filtro).every(value => !value);
@@ -17,19 +18,20 @@ const buscar = async (filtro) => {
     } else {
         await convenioService.buscarConvenios(filtro);
     }
+
+    dadosEncontrados.value = convenioService.content.length > 0;
 };
 
 const limpar = () => {
     convenioService.content = [];
     buscaRealizada.value = false;
+    dadosEncontrados.value = false;
 };
 
-onMounted( async () => {
-    try {
-        await convenioService.listarConvenios();
-    } catch (error) {
-        console.error('Erro ao listar convênios:', error);
-    }
+onMounted(() => {
+    buscaRealizada.value = false; // Reseta o estado quando o componente é montado
+    convenioService.content = []; // Garante que a tabela esteja vazia ao carregar
+    dadosEncontrados.value = false;
 });
 
 </script>
@@ -40,7 +42,10 @@ onMounted( async () => {
             <p class="text-4xl font-medium">Convênios</p>
         </div>
         <br>
-        <ConveniosFiltros @buscarConvenios="buscar" @limparFiltros="limpar"></ConveniosFiltros>
+        <ConveniosFiltros
+            @buscarConvenios="buscar"
+            @limparFiltros="limpar"
+            :buscaRealizada="buscaRealizada"></ConveniosFiltros>
         <br><br>
         <ConveniosDataTable :convenios="convenioService.content"></ConveniosDataTable>
         <Message v-if="buscaRealizada && convenioService.content.length === 0"
