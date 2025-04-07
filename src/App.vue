@@ -1,11 +1,24 @@
 <script setup>
-import Home from '@/views/Home.vue';
-import FooterRodape from "@/components/FooterRodape.vue";
 import HeaderTopo from "@/components/HeaderTopo.vue";
 import NavBar from "@/components/NavBar.vue";
+import FooterRodape from "@/components/FooterRodape.vue";
+import LoadingModal from "@/components/LoadingModal.vue";
+import { ref } from 'vue';
+
+const isLoading = ref(false);
+
+const startLoading = () => {
+    isLoading.value = true;
+};
+
+const endLoading = () => {
+    isLoading.value = false;
+};
 </script>
 
 <template>
+    <LoadingModal :isVisible="isLoading"/>
+
     <div class="flex flex-col justify-between h-screen">
         <div class="flex-grow">
             <header>
@@ -18,7 +31,10 @@ import NavBar from "@/components/NavBar.vue";
             </header>
 
             <main class="container mx-auto px-4">
-                <Home></Home>
+                <router-view
+                    @start-loading="startLoading"
+                    @end-loading="endLoading"
+                ></router-view>
             </main>
         </div>
 

@@ -50,8 +50,11 @@ import { Icon } from "@iconify/vue";
             </div>
 
             <p class="mb-2">
-                Desenvolvido com paixão por <a href="https://www.linkedin.com/in/gabrieljauneribera/" target="_blank"
-                                               rel="noopener noreferrer" class="font-medium hover:text-blue-500 dark:hover:text-blue-400">Gabriel</a>.
+                Desenvolvido com paixão por
+                <a href="https://www.linkedin.com/in/gabrieljauneribera/" target="_blank" rel="noopener noreferrer"
+                   class="font-medium hover:text-blue-500 dark:hover:text-blue-400">
+                    Gabriel
+                </a>.
             </p>
             <p>&copy; {{ new Date().getFullYear() }} Gabriel/Convênios. Todos os direitos reservados.</p>
         </div>

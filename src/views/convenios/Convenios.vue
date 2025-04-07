@@ -1,25 +1,30 @@
 <script setup>
 import convenioServiceImpl from "@/services/convenioService.js";
-import {onMounted, ref} from "vue";
-import {Message} from "primevue";
+import { onMounted, ref, defineEmits } from "vue";
+import { Message } from "primevue";
 import ConveniosFiltros from "@/views/convenios/ConveniosFiltros.vue";
 import ConveniosDataTable from "@/views/convenios/ConveniosDataTable.vue";
 
+const emit = defineEmits(['start-loading', 'end-loading']);
 const convenioService = convenioServiceImpl();
 const buscaRealizada = ref(false);
 const dadosEncontrados = ref(false);
 
 const buscar = async (filtro) => {
-    const isFiltroVazio = Object.values(filtro).every(value => !value);
-    buscaRealizada.value = true;
-
-    if (isFiltroVazio) {
-        await convenioService.listarConvenios();
-    } else {
-        await convenioService.buscarConvenios(filtro);
+    emit('start-loading');
+    try {
+        const isFiltroVazio = Object.values(filtro).every(value => !value);
+        if (isFiltroVazio) {
+            await convenioService.listarConvenios();
+        } else {
+            await convenioService.buscarConvenios(filtro);
+        }
+        dadosEncontrados.value = convenioService.content.length > 0;
+    } catch (error) {
+        console.error("Erro ao buscar convênios:", error);
+    } finally {
+        emit('end-loading');
     }
-
-    dadosEncontrados.value = convenioService.content.length > 0;
 };
 
 const limpar = () => {
@@ -28,10 +33,16 @@ const limpar = () => {
     dadosEncontrados.value = false;
 };
 
-onMounted(() => {
-    buscaRealizada.value = false; // Reseta o estado quando o componente é montado
-    convenioService.content = []; // Garante que a tabela esteja vazia ao carregar
-    dadosEncontrados.value = false;
+onMounted(async () => {
+    emit('start-loading');
+    try {
+        await convenioService.listarConvenios();
+        buscaRealizada.value = convenioService.content.length > 0;
+    } catch (error) {
+        console.error("Erro ao listar convênios na montagem:", error.message);
+    } finally {
+        emit('end-loading');
+    }
 });
 
 </script>

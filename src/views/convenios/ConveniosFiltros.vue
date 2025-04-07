@@ -1,7 +1,7 @@
 <script setup>
 import {Icon} from "@iconify/vue";
 import {InputText, Panel} from "primevue";
-import {computed, ref, defineProps} from "vue";
+import {computed, ref, defineProps, defineEmits} from "vue";
 
 const emit = defineEmits(['buscarConvenios', 'limparFiltros']);
 const props = defineProps({

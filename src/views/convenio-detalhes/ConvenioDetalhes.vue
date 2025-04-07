@@ -1,14 +1,22 @@
 <script setup>
 import ConvenioPanel from "@/views/convenio-detalhes/ConvenioPanel.vue";
 import convenioServiceImpl from "@/services/convenioService.js";
-import {onMounted, defineProps} from "vue";
+import {onMounted, defineProps, defineEmits} from "vue";
 import ConvenioLancamentoAditivo from "@/views/convenio-detalhes/ConvenioLancamentoAditivo.vue";
 
 const props = defineProps(['convenioId']);
 const convenioService = convenioServiceImpl();
+const emit = defineEmits(['start-loading', 'end-loading']);
 
 onMounted( async () => {
-    await convenioService.listarConvenioPorId(props.convenioId);
+    emit('start-loading');
+    try {
+        await convenioService.listarConvenioPorId(props.convenioId);
+    } catch (error) {
+        console.error("Erro ao detalhar o convênio na montagem:", error.message);
+    } finally {
+        emit('end-loading');
+    }
 });
 </script>
 

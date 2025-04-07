@@ -1,7 +1,7 @@
 <script setup>
 import {Icon} from "@iconify/vue";
 import {Column, DataTable} from "primevue";
-import { defineProps } from 'vue';
+import {defineProps} from 'vue';
 import funcoes from "@/utils/funcoes.js";
 import {useRouter} from "vue-router";
 
@@ -10,8 +10,8 @@ const { formatarDataBr, formatarMoedaBr } = funcoes();
 const router = useRouter();
 const props = defineProps(['convenios']);
 
-const detalhar = (_convenioId) => {
-    router.push({ name: 'convenio-detalhe', params: {convenioId: _convenioId} });
+const detalhar = async (_convenioId) => {
+    await router.push({ name: 'convenio-detalhe', params: {convenioId: _convenioId} });
 };
 </script>
 
