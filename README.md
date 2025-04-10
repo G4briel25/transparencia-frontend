@@ -27,12 +27,12 @@ A interface foi desenvolvida com o framework **Tailwind CSS**, garantindo uma ó
 
 ## 🛠️ Tecnologias Utilizadas
 
-- Vue.js
+- Vue.js 3 (Composition API)
+- PrimeVue
 - Tailwind CSS
-- Spring Boot (API)
 - Axios
-- GitHub Pages
-- MySQL / PostgreSQL
+- Vue Router
+- Pinia
 
 ## 🤝 Compromisso com a Transparência
 
