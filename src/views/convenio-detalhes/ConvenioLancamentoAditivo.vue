@@ -29,7 +29,7 @@ const visualizarLancamento = (aditivo) => {
         </TabList>
         <TabPanels>
             <TabPanel value="0">
-                <DataTable :value="props.convenioService.lancamento">
+                <DataTable v-if="props.convenioService.lancamento.length" :value="props.convenioService.lancamento">
                     <Column field="id" header="ID"></Column>
                     <Column field="exercicio" header="Exercício"></Column>
                     <Column field="dataRepasse" header="Data Repasse">
@@ -43,9 +43,10 @@ const visualizarLancamento = (aditivo) => {
                         </template>
                     </Column>
                 </DataTable>
+                <Message v-else severity="warn">Não foram encontrados nenhum registro.</Message>
             </TabPanel>
             <TabPanel value="1">
-                <DataTable :value="props.convenioService.aditivos">
+                <DataTable v-if="props.convenioService.aditivos.length" :value="props.convenioService.aditivos">
                     <Column field="id" header="ID"></Column>
                     <Column field="numeroAditivo" header="Aditivo"></Column>
                     <Column field="responsaveis" header="Responsáveis"></Column>
@@ -79,6 +80,7 @@ const visualizarLancamento = (aditivo) => {
                         </template>
                     </Column>
                 </DataTable>
+                <Message v-else severity="warn">Não foram encontrados nenhum registro.</Message>
             </TabPanel>
         </TabPanels>
     </Tabs>
