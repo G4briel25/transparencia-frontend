@@ -12,7 +12,7 @@ Ela permite realizar buscas por **Proponente** e **Objeto**, sem necessidade de 
 Existe também um sistema complementar chamado **Frontend Gerência**, utilizado por administradores para cadastrar, editar e excluir os dados apresentados aqui.
 
 👉 Acesse o sistema de gerência:  
-[https://gerencia.exemplo.com](https://gerencia.exemplo.com)
+[https://gerencia-frontend.onrender.com](https://gerencia-frontend.onrender.com)
 
 ## ⚙️ Funcionalidades
 
@@ -44,4 +44,4 @@ Ao facilitar o acesso às informações públicas, promovemos uma administraçã
 ## 🌐 Acesse o sistema Transparência
 
 👉 O sistema público de consulta pode ser acessado pelo link:  
-[https://seu-usuario.github.io/transparencia](https://seu-usuario.github.io/transparencia)
+[https://transparencia.onrender.com](https://transparencia.onrender.com)
