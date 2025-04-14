@@ -14,6 +14,10 @@ Existe também um sistema complementar chamado **Frontend Gerência**, utilizado
 👉 Acesse o sistema de gerência:  
 [https://gerencia-frontend.onrender.com](https://gerencia-frontend.onrender.com)
 
+> ⚠️ **Aviso importante:**  
+> A API utilizada por este sistema está hospedada na plataforma **Render**, na versão gratuita. Isso significa que, quando não há acesso por algum tempo, o servidor entra em modo de espera (*cold start*).  
+> **Ao abrir o sistema, pode ser necessário aguardar alguns segundos (ou minutos) até que a API seja reativada e os dados comecem a aparecer normalmente.**
+
 ## ⚙️ Funcionalidades
 
 - Consulta pública de convênios cadastrados
@@ -45,3 +49,7 @@ Ao facilitar o acesso às informações públicas, promovemos uma administraçã
 
 👉 O sistema público de consulta pode ser acessado pelo link:  
 [https://transparencia.onrender.com](https://transparencia.onrender.com)
+
+> ⚠️ **Aviso importante:**  
+> A API utilizada por este sistema está hospedada na plataforma **Render**, na versão gratuita. Isso significa que, quando não há acesso por algum tempo, o servidor entra em modo de espera (*cold start*).  
+> **Ao abrir o sistema, pode ser necessário aguardar alguns segundos (ou minutos) até que a API seja reativada e os dados comecem a aparecer normalmente.**
