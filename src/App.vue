@@ -38,8 +38,8 @@ const endLoading = () => {
             </main>
         </div>
 
-        <footer class="mt-5">
-            <FooterRodape></FooterRodape>
-        </footer>
+<!--        <footer class="mt-5">-->
+<!--            <FooterRodape></FooterRodape>-->
+<!--        </footer>-->
     </div>
 </template>

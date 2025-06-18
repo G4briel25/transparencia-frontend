@@ -11,13 +11,6 @@ Ela permite realizar buscas por **Proponente** e **Objeto**, sem necessidade de 
 
 Existe também um sistema complementar chamado **Frontend Gerência**, utilizado por administradores para cadastrar, editar e excluir os dados apresentados aqui.
 
-👉 Acesse o sistema de gerência:  
-[https://gerencia-frontend.onrender.com](https://gerencia-frontend.onrender.com)
-
-> ⚠️ **Aviso importante:**  
-> A API utilizada por este sistema está hospedada na plataforma **Render**, na versão gratuita. Isso significa que, quando não há acesso por algum tempo, o servidor entra em modo de espera (*cold start*).  
-> **Ao abrir o sistema, pode ser necessário aguardar alguns segundos (ou minutos) até que a API seja reativada e os dados comecem a aparecer normalmente.**
-
 ## ⚙️ Funcionalidades
 
 - Consulta pública de convênios cadastrados
@@ -45,11 +38,18 @@ Ao facilitar o acesso às informações públicas, promovemos uma administraçã
 
 ---
 
-## 🌐 Acesse o sistema Transparência
+# 📸 Screenshots do projeto
 
-👉 O sistema público de consulta pode ser acessado pelo link:  
-[https://transparencia.onrender.com](https://transparencia.onrender.com)
+## 🗂️ Tela inicial convênio
+![Tela convênio](./public/tela-convenios.png)
 
-> ⚠️ **Aviso importante:**  
-> A API utilizada por este sistema está hospedada na plataforma **Render**, na versão gratuita. Isso significa que, quando não há acesso por algum tempo, o servidor entra em modo de espera (*cold start*).  
-> **Ao abrir o sistema, pode ser necessário aguardar alguns segundos (ou minutos) até que a API seja reativada e os dados comecem a aparecer normalmente.**
+## 📱 Mobile
+![Tela convênio](./public/tela-convenio-mobile.png)
+
+---
+
+## 📄 Tela de detalhamento do convênio
+![Tela de detalhamento do convênio](./public/detalhes-convenio.png)
+
+## 📱 Mobile
+![Tela de detalhamento do convênio](./public/detalhes-convenio-mobile.png)
